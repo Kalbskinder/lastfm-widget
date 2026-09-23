@@ -1,0 +1,181 @@
+.lastfm-widget {
+    --bg: #ffffff;
+    --bg-hover: #f7f7fa;
+    --text: #16161a;
+    --text-muted: #6b6b76;
+    --border: #e6e6ec;
+    --accent: #d51007; /* Last.fm red */
+    --shadow: 0 6px 24px rgba(20, 20, 30, 0.10);
+    --skeleton: #ececf1;
+
+    box-sizing: border-box;
+    width: 340px;
+    max-width: 100%;
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.lastfm-widget * {
+    box-sizing: border-box;
+}
+
+.lastfm-widget[data-theme="dark"] {
+    --bg: #16161a;
+    --bg-hover: #1e1e24;
+    --text: #f5f5f7;
+    --text-muted: #a0a0ad;
+    --border: #2a2a32;
+    --accent: #f5453b;
+    --shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+    --skeleton: #26262e;
+}
+
+@media (prefers-color-scheme: dark) {
+    .lastfm-widget[data-theme="auto"] {
+        --bg: #16161a;
+        --bg-hover: #1e1e24;
+        --text: #f5f5f7;
+        --text-muted: #a0a0ad;
+        --border: #2a2a32;
+        --accent: #f5453b;
+        --shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+        --skeleton: #26262e;
+    }
+}
+
+a.lastfm-widget:hover,
+.lastfm-widget[role="link"]:hover {
+    background: var(--bg-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.lastfm-widget__cover {
+    flex: 0 0 auto;
+    width: 88px;
+    height: 88px;
+    border-radius: 12px;
+    object-fit: cover;
+    background: var(--skeleton);
+    border: 1px solid var(--border);
+}
+
+.lastfm-widget__cover--placeholder {
+    display: grid;
+    place-items: center;
+    color: var(--text-muted);
+    font-size: 30px;
+}
+
+.lastfm-widget__body {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.lastfm-widget__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 3px;
+}
+
+.lastfm-widget__status--live {
+    color: var(--accent);
+}
+
+.lastfm-widget__title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lastfm-widget__meta {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lastfm-widget__meta b {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.lastfm-widget__eq {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 11px;
+}
+
+.lastfm-widget__eq span {
+    width: 3px;
+    border-radius: 2px;
+    background: var(--accent);
+    animation: lastfm-eq 0.9s ease-in-out infinite;
+}
+
+.lastfm-widget__eq span:nth-child(1) { animation-delay: -0.6s; }
+.lastfm-widget__eq span:nth-child(2) { animation-delay: -0.3s; }
+.lastfm-widget__eq span:nth-child(3) { animation-delay: -0.9s; }
+
+@keyframes lastfm-eq {
+    0%, 100% { height: 3px; }
+    50% { height: 11px; }
+}
+
+.lastfm-widget--loading .lastfm-widget__cover,
+.lastfm-widget--loading .lastfm-widget__skeleton {
+    background: var(--skeleton);
+    border-radius: 6px;
+    animation: lastfm-pulse 1.2s ease-in-out infinite;
+}
+
+.lastfm-widget__skeleton { height: 12px; margin: 4px 0; }
+.lastfm-widget__skeleton--sm { width: 55%; }
+.lastfm-widget__skeleton--md { width: 80%; }
+
+@keyframes lastfm-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.lastfm-widget--error {
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lastfm-widget,
+    .lastfm-widget__eq span,
+    .lastfm-widget--loading .lastfm-widget__cover,
+    .lastfm-widget--loading .lastfm-widget__skeleton {
+        animation: none;
+        transition: none;
+    }
+    .lastfm-widget__eq span { height: 8px; }
+}
