@@ -10,8 +10,18 @@ A widget to display your last listened to song on last.fm.
 
 ## How to use
 
+- [HTML iframe](#html-iframe)
 - [Vanilla JS](#vanilla-js)
 - [React](#react)
+
+## HTML iframe
+
+Copy this iframe element into your HTML file and replace the placeholders.
+
+```html
+<iframe src="https://kalbskinder.github.io/lastfm-widget/?username={username}&theme={theme}&refresh{refresh-ms}"
+        width="360" height="130" frameborder="0"></iframe>
+```
 
 ## Vanilla JS
 
