@@ -29,7 +29,7 @@ Add a container element with the id `lastfm-widget`, then load the stylesheet an
 <div id="lastfm-widget"></div>
 
 <script src="/widget.js"></script>
-<script>loadWidget("auto", "username")</script> <!-- "light" | "dark" | "auto", your last.fm username -->
+<script>loadWidget("auto", "username")</script> <!-- "light" | "dark" | "auto" | "bg" | "banner", your last.fm username -->
 ```
 
 The widget refreshes automatically every 10 seconds. Pass a third argument to
@@ -64,7 +64,7 @@ export default function App() {
 | Prop              | Type                            | Default    | Description                                                        |
 | ----------------- | ------------------------------- | ---------- | ----------------------------------------------------------------- |
 | `username`        | `string`                        | _required_ | Your last.fm username.                                            |
-| `theme`           | `"light" \| "dark" \| "auto"`   | `"auto"`   | Color theme.                                                      |
+| `theme`           | `"light" \| "dark" \| "auto" \| "bg" \| "banner"` | `"auto"` | Color theme. `bg` and `banner` use the album cover as a darkened background (`banner` is a wider layout with extra padding on the right). |
 | `refreshInterval` | `number`                        | `10000`    | Milliseconds between refreshes. Set to `0` to disable polling.    |
 
 ```tsx

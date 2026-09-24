@@ -58,11 +58,19 @@ function renderLoading() {
 function renderError(message) {
     widgetContainer.classList.remove("lastfm-widget--loading");
     widgetContainer.classList.add("lastfm-widget--error");
+    widgetContainer.style.removeProperty("--lastfm-cover");
     widgetContainer.textContent = message || "Couldn't load track.";
 }
 
 function renderSong(song) {
     widgetContainer.classList.remove("lastfm-widget--loading", "lastfm-widget--error");
+
+    // Feeds the "bg" and "banner" themes, which use the cover as the background.
+    if (song.cover) {
+        widgetContainer.style.setProperty("--lastfm-cover", `url("${song.cover.replace(/["\\]/g, "")}")`);
+    } else {
+        widgetContainer.style.removeProperty("--lastfm-cover");
+    }
 
     const cover = song.cover
         ? `<img class="lastfm-widget__cover" src="${escapeHtml(song.cover)}" alt="${escapeHtml(song.album || song.name)} cover" loading="lazy">`
@@ -100,7 +108,7 @@ function renderSong(song) {
     }
 }
 
-// theme: "light" | "dark" | "auto"
+// theme: "light" | "dark" | "auto" | "bg" | "banner"
 function loadWidget(theme = "auto", username, refreshInterval = 10000) {
     widgetContainer.classList.add("lastfm-widget");
     widgetContainer.dataset.theme = theme;

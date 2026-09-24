@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import "./widget.css";
 
 const API_BASE = "https://lastfm-last-played.biancarosa.com.br";
 
-export type Theme = "light" | "dark" | "auto";
+export type Theme = "light" | "dark" | "auto" | "bg" | "banner";
 
 export interface LastfmWidgetProps {
     username: string;
@@ -168,8 +168,13 @@ export default function LastfmWidget({
         ? { href: song.url, target: "_blank", rel: "noopener noreferrer" }
         : {};
 
+    // Feeds the "bg" and "banner" themes, which use the cover as the background.
+    const style = song?.cover
+        ? ({ "--lastfm-cover": `url("${song.cover.replace(/["\\]/g, "")}")` } as CSSProperties)
+        : undefined;
+
     return (
-        <Wrapper className={classNames.join(" ")} data-theme={theme} {...wrapperProps}>
+        <Wrapper className={classNames.join(" ")} data-theme={theme} style={style} {...wrapperProps}>
             {state.status === "loading" ? <Loading /> : song && <Song song={song} />}
         </Wrapper>
     );
