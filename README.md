@@ -4,12 +4,19 @@
 
 A widget to display your last listened to song on last.fm.
 
+## Themes
+
+|           Background             |                Banner              |
+| :------------------------------: | :--------------------------------: |
+| ![dark](.github/images/bg.png) | <img src=".github/images/banner.png" width="470" /> |
+
 |              Dark                |                Light               |
 | :------------------------------: | :--------------------------------: |
 | ![dark](.github/images/dark.png) | ![light](.github/images/light.png) |
 
-## How to use
 
+## How to use
+ 
 - [HTML iframe](#html-iframe)
 - [Vanilla JS](#vanilla-js)
 - [React](#react)
