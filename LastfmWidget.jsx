@@ -81,7 +81,7 @@ function Song({ song }) {
     );
 }
 
-// theme: "light" | "dark" | "auto"
+// theme: "light" | "dark" | "auto" | "bg" | "banner"
 export default function LastfmWidget({ username, theme = "auto", refreshInterval = 10000 }) {
     const [state, setState] = useState({ status: "loading" });
 
@@ -129,8 +129,13 @@ export default function LastfmWidget({ username, theme = "auto", refreshInterval
         ? { href: song.url, target: "_blank", rel: "noopener noreferrer" }
         : {};
 
+    // Feeds the "bg" and "banner" themes, which use the cover as the background.
+    const style = song?.cover
+        ? { "--lastfm-cover": `url("${song.cover.replace(/["\\]/g, "")}")` }
+        : undefined;
+
     return (
-        <Wrapper className={classNames.join(" ")} data-theme={theme} {...wrapperProps}>
+        <Wrapper className={classNames.join(" ")} data-theme={theme} style={style} {...wrapperProps}>
             {state.status === "loading" ? <Loading /> : <Song song={song} />}
         </Wrapper>
     );

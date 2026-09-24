@@ -4,7 +4,7 @@
     --text: #16161a;
     --text-muted: #6b6b76;
     --border: #e6e6ec;
-    --accent: #d51007; /* Last.fm red */
+    --accent: #d51007;
     --shadow: 0 6px 24px rgba(20, 20, 30, 0.10);
     --skeleton: #ececf1;
 
@@ -53,11 +53,69 @@
     }
 }
 
+.lastfm-widget[data-theme="bg"],
+.lastfm-widget[data-theme="banner"] {
+    --text: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.78);
+    --accent: #ffffff;
+    --border: rgba(255, 255, 255, 0.22);
+    --skeleton: rgba(255, 255, 255, 0.14);
+    --shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+    --lastfm-overlay: linear-gradient(90deg, rgba(10, 10, 14, 0.80) 0%, rgba(10, 10, 14, 0.48) 100%);
+
+    color: var(--text);
+    border: none;
+    background-color: #17171b;
+    background-image: var(--lastfm-overlay), var(--lastfm-cover, none);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.lastfm-widget[data-theme="banner"] {
+    width: 640px;
+    padding: 24px;
+    padding-right: 96px;
+    gap: 22px;
+    border-radius: 20px;
+}
+
+.lastfm-widget[data-theme="banner"] .lastfm-widget__cover {
+    width: 120px;
+    height: 120px;
+    border-radius: 16px;
+}
+
+.lastfm-widget[data-theme="banner"] .lastfm-widget__status {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.lastfm-widget[data-theme="banner"] .lastfm-widget__title {
+    font-size: 26px;
+}
+
+.lastfm-widget[data-theme="banner"] .lastfm-widget__meta {
+    font-size: 15px;
+}
+
 a.lastfm-widget:hover,
 .lastfm-widget[role="link"]:hover {
     background: var(--bg-hover);
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+a.lastfm-widget[data-theme="bg"]:hover,
+a.lastfm-widget[data-theme="banner"]:hover,
+.lastfm-widget[data-theme="bg"][role="link"]:hover,
+.lastfm-widget[data-theme="banner"][role="link"]:hover {
+    background-color: #17171b;
+    background-image: var(--lastfm-overlay), var(--lastfm-cover, none);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .lastfm-widget__cover {
@@ -67,7 +125,6 @@ a.lastfm-widget:hover,
     border-radius: 12px;
     object-fit: cover;
     background: var(--skeleton);
-    border: 1px solid var(--border);
 }
 
 .lastfm-widget__cover--placeholder {
